@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>    
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Ver</title>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/estilos.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+     <!-- navbar -->
+     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top ">
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#opciones">
+        <span class="navbar-toggler-icon"></span>
+        </button>      
+        <!-- insertar logo -->            
+        <a class="navbar-brand " href="#">
+            {% load static %} 
+            <img src="{% static 'img/logo.jpg'%}" width="60" height="60" alt="">
+        </a>
+        <div class="collapse navbar-collapse " id="opciones">   
+            <ul class="navbar-nav">                
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Administrador</a>
+            </li> 
+            </ul>  
+        </div>
+        </nav>          
+        <!-- fin navbar --> 
+    <br><br><br><br>
+
+
+    <h3>Mostrando Datos</h3>
+    <div class="linea"></div>
+
+    <div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Rut</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fono</th>
+                <th scope="col">Dirección</th>        
+                <th scope="col">E-mail</th>        
+                <th scope="col">País</th>  
+                <th scope="col">Contraseña</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {%for colab in colaboradores%}
+                <tr>
+                    <td>{{colab.rutColaborador}}</td>
+                    <!-- <td>{{colab.imagen}}</td> -->
+                    {% load static %}      
+                    <td><img src="{% static '{{colab.imagen}}' %}" width="50" height="50" class="img-responsive" alt=""></td>
+                    <td>{{colab.nomColaborador}}</td>
+                    <td>{{colab.fonoColaborador}}</td>
+                    <td>{{colab.dirColaborador}}</td>
+                    <td>{{colab.emailColaborador}}</td>
+                    <td>{{colab.paisColaborador}}</td>
+                    <td>{{colab.contrasenaColaborador}}</td>
+                    <td><a href="{% url 'form_modificar' colab.rutColaborador%}" class="btn btn-primary" id="btnprueba">Modificar  </a></td>
+                    <td><a href="{% url 'form_eliminar' colab.rutColaborador%}" class="btn btn-danger" id="btnprueba">Eliminar </a></td>
+                </tr>
+            {%endfor%}
+
+        </tbody>
+
+    </table>
+    <a href="{% url 'form_crear' %}" class="btn btn-primary" id="btnprueba">Nuevo Producto</a>
+    <br><br><br>
+  </div>
+
+ <!-- footer -->    
+ <footer class= "container-fluid footer" >
+  <p>©Copyright 2021 Danko Zamarin | Derechos reservados             Síguenos: 
+    <i class="fa fa-whatsapp"></i>
+    <i class="fa fa-facebook"></i>
+    <i class="fa fa-envelope"></i> 
+    <i class="fa fa-instagram"></i> 
+    <i class="fa fa-twitter"></i> 
+  </p>
+
+</footer>
+</body>
+</html>
